@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->enum('rol', ['secretary', 'general_secretary', 'director'])->default('secretary');
             $table->string('unity');
-            $table->string('active');
+            $table->string('active')->default('no');
             $table->rememberToken();
             $table->timestamps();
         });

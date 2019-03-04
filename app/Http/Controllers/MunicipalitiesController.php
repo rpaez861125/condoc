@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Grade;
 use Illuminate\Http\Request;
 
-class GradeController extends Controller
+class MunicipalitiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +40,10 @@ class GradeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Grade  $grade
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Grade $grade)
+    public function show($id)
     {
         //
     }
@@ -52,10 +51,10 @@ class GradeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Grade  $grade
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Grade $grade)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class GradeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Grade  $grade
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Grade $grade)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class GradeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Grade  $grade
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Grade $grade)
+    public function destroy($id)
     {
         //
     }

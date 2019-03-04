@@ -30,11 +30,13 @@ class Student extends Model
 
     public function student_subject()
     {
-        return $this->hasMany('App\Student_Subject'); 
+        return $this->belongsToMany('App\Subject', 'students_subjects')
+                    ->withPivot('note', 'tipe'); 
     }
 
     public function assist()
     {
-        return $this->hasMany('App\Assist');
+        return $this->belongsToMany('App\Subject', 'assists')
+                    ->withPivot('date');
     }
 }

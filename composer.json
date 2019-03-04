@@ -11,7 +11,13 @@
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "cviebrock/eloquent-sluggable": "^4.8",
+        "harvesthq/chosen": "^1.8",
+        "laracasts/flash": "^3.0",
+        "laravelcollective/html": "^5.8",
+        "laraveles/spanish": "^1.1",
+        "nesbot/carbon": "^1.36"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -59,4 +65,5 @@
             "@php artisan key:generate --ansi"
         ]
     }
+    
 }
