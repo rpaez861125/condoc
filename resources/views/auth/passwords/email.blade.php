@@ -29,7 +29,7 @@
                             <button type="submit" class="btn btn-block btn-primary">{{ __('Send Password Reset Link') }}</button>
                         </div>
                         <div class="form-group clearfix">
-                            <a class="pull-left" href="{{ route('login') }}">return to {{ __('Login') }}</a>
+                            <a class="pull-left" href="{{ route('login') }}">Return to {{ __('Login') }}</a>
                             <a class="pull-right" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </div>
                     </form>

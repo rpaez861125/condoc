@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('front', [
+    'uses'      => 'FrontController@index',
+    'as'        => 'front'
+]);
+
 Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('users', 'UsersController');
