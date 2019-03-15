@@ -33,5 +33,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('login', [
+        'uses'  =>  'Auth\LoginController@login',
+        'as'    =>  'login'
+]);

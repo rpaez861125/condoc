@@ -19,25 +19,36 @@
                 <div class="auth-content">
                     <p class="text-center">LOGIN TO CONTINUE</p>
                     <form id="login-form" action="{{ route('login') }}" method="POST" novalidate="">
-                        <div class="form-group">
+                        @csrf
+                        <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                             <label for="username">{{ __('E-Mail Address') }}</label>
-                            <input type="email" class="form-control underlined" name="username" id="username" placeholder="Your email address" required> </div>
-                        <div class="form-group">
+                            <input type="email" class="form-control underlined" name="email" id="email" placeholder="Your email address" value="{{ old('email') }}" required> 
+                                <span class="has-error" role="alert">
+                                     <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                        </div>
+                            
+                        <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                             <label for="password">{{ __('Password') }}</label>
-                            <input type="password" class="form-control underlined" name="password" id="password" placeholder="Your password" required> </div>
+                            <input type="password" class="form-control underlined" name="password" id="password" placeholder="Your password" required> 
+                                <span class="has-error" role="alert">
+                                      <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                        </div>
+                            
                         <div class="form-group">
                             <label for="remember">
                                 <input class="checkbox" id="remember" type="checkbox">
                                 <span>{{ __('Remember Me') }}</span>
                             </label>
-                            <a href="{{ route('password.request') }}" class="forgot-btn pull-right">{{ __('Forgot Your Password?') }}</a>
+                          {{--   <a href="{{ route('password.request') }}" class="forgot-btn pull-right">{{ __('Forgot Your Password?') }}</a> --}}
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-block btn-primary">{{ __('Login') }}</button>
                         </div>
                         <div class="form-group">
                             <p class="text-muted text-center">Do not have an account?
-                                <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                                {{-- <a href="{{ route('register') }}">{{ __('Register') }}</a> --}}
                             </p>
                         </div>
                     </form>

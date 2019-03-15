@@ -38,7 +38,7 @@
                                 <div class="col-sm-6">
                                     <input type="password" class="form-control underlined" name="password" id="password" placeholder="Enter password" required=""> </div>
                                 <div class="col-sm-6">
-                                    <input type="password" class="form-control underlined" name="retype_password" id="retype_password" placeholder="Re-type password" required=""> </div>
+                                    <input type="password" class="form-control underlined" name="password_confirmation" id="password_confirmation" placeholder="Re-type password" required=""> </div>
                             </div>
                         </div>
                         <div class="form-group">
