@@ -16,8 +16,11 @@
                             <span class="l l5"></span>
                         </div> Control Docente </h1>
                 </header>
-                <div class="auth-content">
+                <div class="auth-content">                        
                     <p class="text-center">LOGIN TO CONTINUE</p>
+                        @if (session()->has('flash'))
+                            <div class="alert-info"> {{ session('flash')}} </div>
+                        @endif
                     <form id="login-form" action="{{ route('login') }}" method="POST" novalidate="">
                         @csrf
                         <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -46,11 +49,11 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-block btn-primary">{{ __('Login') }}</button>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <p class="text-muted text-center">Do not have an account?
-                                {{-- <a href="{{ route('register') }}">{{ __('Register') }}</a> --}}
+                                <a href="{{ route('register') }}">{{ __('Register') }}</a>
                             </p>
-                        </div>
+                        </div> --}}
                     </form>
                 </div>
             </div>                

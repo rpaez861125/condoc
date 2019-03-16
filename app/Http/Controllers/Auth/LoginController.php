@@ -7,11 +7,22 @@ use Auth;
 
 class LoginController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware('guest', ['only' => 'showLoginForm']);
+    }
+
+    public function showLoginForm()
+    {
+        return view ('auth.login');
+    }
+    
     public function login()
     {
         $credentials = $this->validate(request(),[
-            'email'         =>  'email|required|string',
-            'password'      =>  'required|string'
+            $this->username()       =>  'required|string',
+            'password'              =>  'required|string'
         ]);
        
         if(Auth::attempt($credentials))
@@ -19,7 +30,20 @@ class LoginController extends Controller
             return redirect()->route('front');
         }
         return back()
-                ->withErrors(['email'  => trans('auth.failed')])
-                ->withInput(request(['email']));
+                ->withErrors([$this->username()  => trans('auth.failed')])
+                ->withInput(request([$this->username()]));
+    }
+
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/');
+    }
+
+    public function username()
+    {
+        return 'email';
     }
 }

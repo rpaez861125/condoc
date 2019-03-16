@@ -11,11 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', 'Auth\LoginController@showLoginForm');
 
 
+  // Routes for the administrative part
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -31,9 +30,17 @@ Route::group(['prefix' => 'admin'], function () {
     ]);
     
 });
+        // End routes for the administrative part
 
+
+        //  Access routes for users
 
 Route::post('login', [
         'uses'  =>  'Auth\LoginController@login',
         'as'    =>  'login'
 ]);
+Route::post('logout', [
+        'uses'  =>  'Auth\LoginController@logout',
+        'as'    =>  'logout'
+]);
+        // End Access routes for users
