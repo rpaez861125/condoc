@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             'user'          => 'admin',
             'password'      => bcrypt('admin123'),
             'last_name'     => 'admin',
-            'rol'           => 'director',
+            'rol'           => 'admin',
             'unity'         => '1',
             'active'        => 'si',
                  

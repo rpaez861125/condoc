@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('user');
             $table->string('password');
             $table->string('last_name');
-            $table->enum('rol', ['secretary', 'general_secretary', 'director'])->default('secretary');
+            $table->enum('rol', ['secretary', 'general_secretary', 'director', 'admin'])->default('secretary');
             $table->string('unity');
             $table->string('active')->default('no');
             $table->rememberToken();
