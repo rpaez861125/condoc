@@ -1,5 +1,7 @@
 @extends('admin.template.main')
 
+@section('title', 'Home')
+
 @section('content') 
 <div class="sidebar-overlay" id="sidebar-overlay"></div>
 <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>

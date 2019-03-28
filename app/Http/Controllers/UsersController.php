@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Laracast\Flash\Flash;
+use Validator;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
    
-    /* public function __construct()
+    public function __construct()
     {
         $this->middleware('auth');
-    }   */
+    }  
    
     /**
      * Display a listing of the resource.
@@ -19,7 +23,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-       
+        return view('admin.users.index');
     }
 
     /**
@@ -29,7 +33,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -40,7 +44,11 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User($request->all());
+        $user->password = bcrypt($request->pasword);
+        $user->save();
+
+        return redirect()->route('users.index');
     }
 
     /**

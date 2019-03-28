@@ -24,7 +24,7 @@
                     <form id="login-form" action="{{ route('login') }}" method="POST" novalidate="">
                         @csrf
                         <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                            <label for="username">{{ __('E-Mail Address') }}</label>
+                            <label for="email">{{ __('E-Mail Address') }}</label>
                             <input type="email" class="form-control underlined" name="email" id="email" placeholder="Your email address" value="{{ old('email') }}" required> 
                                 <span class="has-error" role="alert">
                                      <strong>{{ $errors->first('email') }}</strong>
