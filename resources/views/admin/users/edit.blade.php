@@ -1,6 +1,6 @@
 @extends('admin.template.main')
 
-@section('title', 'Crear Usuario')
+@section('title', 'Editar Usuario')
 
 @section('content')
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
@@ -14,55 +14,46 @@
         <div class="row sameheight-container">
             <div class="col-md-8 align-content-center">
                 <div class="card card-block sameheight-item"> 
-                    {!! Form::open(['route' => 'users.store', 'role' => 'form', 'method' => 'POST']) !!}                                   
+                    {!! Form::open(['route' => ['users.update', $user], 'role' => 'form', 'method' => 'PUT']) !!}                                   
                         {{ csrf_field() }}
                         <div class="form-group">
                             {!! Form::label('name', 'Nombre', ['class' => 'control-label']) !!}
-                            {!! Form::text('name', null, ['class' => 'form-control underlined', 'placeholder' => 'Pepe',
+                            {!! Form::text('name', $user->name, ['class' => 'form-control underlined', 'placeholder' => 'Pepe',
                             'required']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('last_name', 'Apellidos', ['class' => 'control-label']) !!}
-                            {!! Form::text('last_name', null, ['class' => 'form-control underlined', 'placeholder' => 'Perez Días',
+                            {!! Form::text('last_name', $user->last_name, ['class' => 'form-control underlined', 'placeholder' => 'Perez Días',
                             'required']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
-                            {!! Form::email('email', null, ['class'=> 'form-control underlined', 'placeholder' => 'example@gmail.com',
+                            {!! Form::email('email', $user->email, ['class'=> 'form-control underlined', 'placeholder' => 'example@gmail.com',
                             'required']) !!} 
                         </div>                                           
                         <div class="form-group">
                             {!! Form::label('user', 'Usuario', ['class' => 'control-label']) !!}
-                            {!! Form::text('user', null, ['class' => 'form-control underlined', 'placeholder' => 'Pepe',
+                            {!! Form::text('user', $user->user, ['class' => 'form-control underlined', 'placeholder' => 'Pepe',
                             'required']) !!}
-                        </div>
-                        <div class="form-group">
-                            {!! Form::label('password', 'Contraseña', ['class' => 'control-label']) !!}
-                            {!! Form::password('password', ['class' => 'form-control underlined', 'placeholder' => '*************',
-                            'required']) !!}
-                        </div>  
+                        </div>                        
                         <div class="form-group">
                             {!! Form::label('rol', 'Rol', ['class' => 'control-label']) !!}
                             {!! Form::select('rol', ['secretary' => 'Secretario/a', 'general_secretary' => 'Secretario/a General', 
-                            'director' => 'Director/a', 'admin' => 'Administrador'], null, ['class' => 'form-control underlined']) !!}
+                            'director' => 'Director/a', 'admin' => 'Administrador'], $user->rol, ['class' => 'form-control underlined']) !!}
                         </div> 
                         <div class="form-group">
                             {!! Form::label('unity', 'Unidad', ['class' => 'control-label']) !!}
                             {!! Form::select('unity', ['1' => '1', '2' => '2', 
-                            '3' => '3', '4' => '4'], null, ['class' => 'form-control underlined']) !!}
+                            '3' => '3', '4' => '4'], $user->unity, ['class' => 'form-control underlined']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('active', 'Activar', ['class' => 'control-label']) !!}
                             {!! Form::select('active', ['si' => 'Si', 'no' => 'No' 
-                            ], null, ['class' => 'form-control underlined']) !!}
-                        </div> 
-                        {{-- 
-                        <div class="form-group">
-                                
-                        </div> --}}
+                            ], $user->active, ['class' => 'form-control underlined']) !!}
+                        </div>                         
                         <div class="form-group row mb-0 mt-1">
                                 <div class="col-md-6 offset-md-4">
-                                        {!! Form::submit('Insertar', ['class' => 'btn btn-primary']) !!}
+                                        {!! Form::submit('Editar', ['class' => 'btn btn-primary']) !!}
                                     <a href=" {{ route('users.index')}} " class="btn btn-primary mx-5"> Cancelar </a>
                                 </div>
                             </div>

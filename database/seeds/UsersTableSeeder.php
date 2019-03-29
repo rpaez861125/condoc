@@ -24,5 +24,16 @@ class UsersTableSeeder extends Seeder
             'active'        => 'si',
                  
         ]);
+        DB::table('users')->insert([
+            'name'          => 'Rolando',
+            'email'         => 'rpaez@gmail.com',
+            'user'          => 'roly',
+            'password'      => bcrypt('admin123'),
+            'last_name'     => 'Paez Carballo',
+            'rol'           => 'secretary',
+            'unity'         => '1',
+            'active'        => 'si',
+                 
+        ]);
     }
 }

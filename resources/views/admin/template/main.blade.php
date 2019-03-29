@@ -19,8 +19,10 @@
                 {{-- Include Nav an Aside to main template --}}
                 @include('admin.template.partials.nav')
                 @include('admin.template.partials.aside')
+                @include('admin.template.partials.errors')
 
                 <div class="container">
+                    
                     @yield('content')
                 </div>
                 <!-- /.modal -->

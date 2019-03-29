@@ -16,6 +16,7 @@
                         <a href="{{ route('front')}}">
                             <i class="fa fa-home"></i> Dashboard </a>
                     </li>
+                    @if (Auth::user()->admin())                    
                     <li>
                         <a href="">
                             <i class="fa fa-users"></i> Usuarios
@@ -23,13 +24,14 @@
                         </a>
                         <ul class="sidebar-nav">
                             <li>
-                                <a href="items-list.html"> Items List </a>
+                                <a href="{{ route('users.index') }}"> Lista</a>
                             </li>
                             <li>
-                                <a href="item-editor.html"> Item Editor </a>
+                                <a href="{{ route('users.create') }}"> Crear </a>
                             </li>
                         </ul>
                     </li>
+                    @endif
                     <li>
                         <a href="">
                             <i class="fa fa-area-chart"></i> Charts
