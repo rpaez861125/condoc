@@ -32,6 +32,15 @@ Route::group(['prefix' => 'admin'], function () {
 });
         // End routes for the administrative part
 
+        //Routes for oder users
+Route::group(['prefix' => 'docente'], function () {
+
+    Route::get('profile/{id}', 'FrontController@profile')->name('profile');
+        
+    
+});
+        //End routes for oder users
+
 
         //  Access routes for users
 

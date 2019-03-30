@@ -13,7 +13,7 @@
                 </div>
             </form>
         </div>
-        <div class="header-block header-block-buttons">
+      {{--   <div class="header-block header-block-buttons">
             <a href="https://github.com/modularcode/modular-admin-html" class="btn btn-sm header-btn">
                 <i class="fa fa-github-alt"></i>
                 <span>View on GitHub</span>
@@ -26,7 +26,7 @@
                 <i class="fa fa-cloud-download"></i>
                 <span>Download .zip</span>
             </a>
-        </div>
+        </div> --}}
         <div class="header-block header-block-nav">
             <ul class="nav-profile">              
                 <li class="profile dropdown">
@@ -35,12 +35,8 @@
                         <span class="name"> {{Auth::user()->name}} </span>
                     </a>
                     <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <a class="dropdown-item" href="#">
-                            <i class="fa fa-user icon"></i> Profile </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="fa fa-bell icon"></i> Notifications </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="fa fa-gear icon"></i> Settings </a>
+                        <a class="dropdown-item" href="{{route ('profile', Auth::user()->id)}}">
+                            <i class="fa fa-user icon"></i> Profile </a>                        
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();

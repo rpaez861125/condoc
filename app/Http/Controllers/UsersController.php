@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\User;
@@ -88,8 +89,8 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+              
         $user = User::find($id);
-
         $validator =  Validator::make($request->all(), [
                         'email' => [
                         'required',
@@ -99,7 +100,7 @@ class UsersController extends Controller
                             
         $user->name = $request->name;
         $user->last_name = $request->last_name;        
-        if ($validator->fails()) {
+        if ($validator->fails()) {          
             return redirect()->route('users.edit', $user )->withErrors($validator)->withInput();        
         }else{
           

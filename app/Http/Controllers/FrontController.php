@@ -1,8 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class FrontController extends Controller
 {
@@ -15,6 +20,12 @@ class FrontController extends Controller
     public function index()
     {
         return view('admin.template.front');
+    }
+
+    public function profile($id)
+    {
+        $user = User::find($id);
+        return view('docente.profile')->with('user', $user);        
     }
 
     /**
