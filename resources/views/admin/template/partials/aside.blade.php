@@ -34,15 +34,18 @@
                     @endif
                     <li>
                         <a href="">
-                            <i class="fa fa-area-chart"></i> Charts
+                            <i class="fa fa-book"></i> Docente
                             <i class="fa arrow"></i>
                         </a>
                         <ul class="sidebar-nav">
                             <li>
-                                <a href="charts-flot.html"> Flot Charts </a>
+                                <a href="{{ route('units.index') }}"> Unidad </a>
                             </li>
                             <li>
-                                <a href="charts-morris.html"> Morris Charts </a>
+                                <a href="{{ route('grades.index') }}"> Grado </a>
+                            </li>
+                            <li>
+                                <a href="charts-morris.html"> Grupo </a>
                             </li>
                         </ul>
                     </li>

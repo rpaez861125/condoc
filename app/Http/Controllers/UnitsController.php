@@ -1,11 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Unit;
+use Laracast\Flash\Flash;
+use Validator;
+use Illuminate\Validation\Rule;
 
 class UnitsController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +26,8 @@ class UnitsController extends Controller
      */
     public function index()
     {
-        //
+        $unit = Unit::orderBy('id', 'ASC')->paginate(8);
+        return view('docente.unit.index')->with('unity', $unit);
     }
 
     /**
@@ -23,7 +37,7 @@ class UnitsController extends Controller
      */
     public function create()
     {
-        //
+        return view('docente.unit.create');
     }
 
     /**
@@ -34,18 +48,11 @@ class UnitsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $unit = new Unit ($request->all());
+        $unit->save();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        flash("Se ha registrado la unidad ". $unit->number . " de forma exitosa!" )->success();
+        return redirect()->route('units.index');
     }
 
     /**
@@ -56,7 +63,8 @@ class UnitsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $units = Unit::find($id);
+        return view('docente.unit.edit')->with('units', $units);
     }
 
     /**
@@ -68,7 +76,12 @@ class UnitsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $units = Unit::find($id);
+        $units->number = $request->number;
+        $units->save();
+
+        flash("Se ha editado la unidad ". $units->number . " de forma exitosa!" )->warning();
+        return redirect()->route('units.index');
     }
 
     /**
@@ -79,6 +92,10 @@ class UnitsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $unit = Unit::find($id);
+        $unit->delete();
+
+        flash("Se ha eliminado la unidad ". $unit->number . " de forma exitosa!" )->error();
+        return redirect()->route('units.index'); 
     }
 }
