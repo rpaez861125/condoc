@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Unit;
 use Laracast\Flash\Flash;
 use Validator;
 use Illuminate\Validation\Rule;
@@ -38,7 +39,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $unit = Unit::orderBy('number', 'ASC')->pluck('number', 'id');
+
+        return view('admin.users.create')->with('units', $unit);
     }
 
     /**
@@ -49,8 +52,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User($request->all());
-        $user->password = bcrypt($request->pasword);
+        $user = new User($request->all());       
+        $user->password = bcrypt($request->password);
         $user->save();
 
         flash("Se ha registrado el usuario ". $user->name . " de forma exitosa!" )->success();
@@ -77,7 +80,10 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('admin.users.edit')->with('user', $user);
+        $unit = Unit::orderBy('number', 'ASC')->pluck('number', 'id');
+        return view('admin.users.edit')
+        ->with('user', $user)
+        ->with('units', $unit);
     }
 
     /**

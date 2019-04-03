@@ -44,8 +44,7 @@
                         </div> 
                         <div class="form-group">
                             {!! Form::label('unity', 'Unidad', ['class' => 'control-label']) !!}
-                            {!! Form::select('unity', ['1' => '1', '2' => '2', 
-                            '3' => '3', '4' => '4'], $user->unity, ['class' => 'form-control underlined']) !!}
+                            {!! Form::select('unity', $units, $user->unity, ['class' => 'form-control underlined']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('active', 'Activar', ['class' => 'control-label']) !!}

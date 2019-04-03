@@ -58,7 +58,7 @@ class GradesController extends Controller
         $grades = new Grade($request->all());
         $grades->save();
 
-        flash("Se ha registrado El grado ". $grades->number . " de forma exitosa!" )->success();
+        flash("Se ha registrado el grado ". $grades->number . " de forma exitosa!" )->success();
         return redirect()->route('grades.index');
     }
 
