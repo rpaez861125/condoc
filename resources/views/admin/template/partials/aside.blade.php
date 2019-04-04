@@ -45,21 +45,30 @@
                                 <a href="{{ route('grades.index') }}"> Grado </a>
                             </li>
                             <li>
-                                <a href="charts-morris.html"> Grupo </a>
+                                <a href="{{ route('groups.index') }}"> Grupo </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('groups.index') }}"> Curso </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('groups.index') }}"> Asignaturas </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('groups.index') }}"> Estudiantes </a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="">
-                            <i class="fa fa-table"></i> Tables
+                            <i class="fa fa-hotel"></i> Vivienda
                             <i class="fa arrow"></i>
                         </a>
                         <ul class="sidebar-nav">
                             <li>
-                                <a href="static-tables.html"> Static Tables </a>
+                                <a href="static-tables.html"> Munucipio </a>
                             </li>
                             <li>
-                                <a href="responsive-tables.html"> Responsive Tables </a>
+                                <a href="responsive-tables.html"> Consejo Popular </a>
                             </li>
                         </ul>
                     </li>

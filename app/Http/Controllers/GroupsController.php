@@ -1,8 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 
+use App\Grade;
+use App\Group;
 use Illuminate\Http\Request;
+use Laracast\Flash\Flash;
+use Validator;
+use Illuminate\Validation\Rule;
 
 class GroupsController extends Controller
 {
@@ -18,7 +27,12 @@ class GroupsController extends Controller
      */
     public function index()
     {
-        //
+        $group = Group::orderBy('id', 'ASC')->paginate(8);
+        $group->each(function($group){
+            $group->grade;
+        });
+
+        return view('docente.groups.index')->with('groups' ,$group);
     }
 
     /**
@@ -28,7 +42,8 @@ class GroupsController extends Controller
      */
     public function create()
     {
-        //
+        $grades = Grade::orderBy('number', 'ASC')->pluck('number', 'id');
+        return view ('docente.groups.create')->with('grades', $grades);
     }
 
     /**
@@ -39,7 +54,11 @@ class GroupsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $groups = new Group($request->all());
+        $groups->save();
+
+        flash("Se ha registrado el grupo ". $groups->number . " de forma exitosa!" )->success();
+        return redirect()->route('groups.index');
     }
 
     /**
@@ -61,7 +80,13 @@ class GroupsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $groups = Group::find($id);
+        $groups->grade;
+
+        $grades = Grade::orderBy('number', 'ASC')->pluck('number', 'id');
+        return view('docente.groups.edit')
+        ->with('grades', $grades)
+        ->with('groups', $groups);
     }
 
     /**
@@ -84,6 +109,10 @@ class GroupsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $group = Group::find($id);
+        $group->delete();
+
+        flash("Se ha eliminado el grupo ". $group->number . " de forma exitosa!" )->error();
+        return redirect()->route('groups.index'); 
     }
 }
