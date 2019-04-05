@@ -1,8 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Popularcouncil;
+use App\Municipality;
+use Laracast\Flash\Flash;
+use Validator;
+use Illuminate\Validation\Rule;
 
 class PopularcouncilsController extends Controller
 {
@@ -17,7 +26,11 @@ class PopularcouncilsController extends Controller
      */
     public function index()
     {
-        //
+        $popul = Popularcouncil::orderBy('id', 'ASC')->paginate(8);
+        $popul->each(function($popul){
+            $popul->municipality;
+        });
+        return view ('docente.c_popular.index')->with('popula', $popul);
     }
 
     /**
@@ -27,7 +40,8 @@ class PopularcouncilsController extends Controller
      */
     public function create()
     {
-        //
+        $munic = Municipality::orderBy('name', 'ASC')->pluck('name', 'id');
+        return view ('docente.c_popular.create')->with('munici', $munic);
     }
 
     /**
@@ -38,18 +52,11 @@ class PopularcouncilsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $popul = new Popularcouncil($request->all());
+        $popul->save();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        flash("Se ha regristrado el consejo popular " . $popul->name . " de forma exitosa!")->success();
+        return redirect()->route('cons_pop.index');
     }
 
     /**
@@ -60,7 +67,13 @@ class PopularcouncilsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $popul = Popularcouncil::find($id);
+        $popul->municipality;
+
+        $munic = Municipality::orderBy('name', 'ASC')->pluck('name', 'id');
+        return view('docente.c_popular.edit')
+        ->with('munic', $munic)
+        ->with('popul', $popul);
     }
 
     /**
@@ -72,7 +85,12 @@ class PopularcouncilsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $popul = Popularcouncil::find($id);
+        $popul->fill($request->all());       
+        $popul->save();
+
+        flash("Se ha editado el consejo popular ". $popul->name . " de forma exitosa!" )->warning();
+        return redirect()->route('cons_pop.index');
     }
 
     /**
@@ -83,6 +101,10 @@ class PopularcouncilsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $popul = Popularcouncil::find($id);
+        $popul->delete();
+
+        flash("Se ha eliminado el consejo popular " . $popul->name . "de forma exitosa!")->error();
+        return redirect()->route('cons_pop.index');
     }
 }

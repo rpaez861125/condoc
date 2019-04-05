@@ -65,10 +65,10 @@
                         </a>
                         <ul class="sidebar-nav">
                             <li>
-                                <a href="static-tables.html"> Munucipio </a>
+                                <a href="{{ route('munic.index') }}"> Munucipio </a>
                             </li>
                             <li>
-                                <a href="responsive-tables.html"> Consejo Popular </a>
+                                <a href="{{ route('cons_pop.index') }}"> Consejo Popular </a>
                             </li>
                         </ul>
                     </li>

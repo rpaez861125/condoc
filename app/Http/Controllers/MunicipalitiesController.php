@@ -1,8 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\Municipality;
+use Laracast\Flash\Flash;
+use Validator;
+use Illuminate\Validation\Rule;
 
 class MunicipalitiesController extends Controller
 {
@@ -18,7 +26,8 @@ class MunicipalitiesController extends Controller
      */
     public function index()
     {
-        //
+        $munic = Municipality::orderBy('id', 'ASC')->paginate(8);
+        return view ('docente.municipio.index')->with('munici', $munic);
     }
 
     /**
@@ -28,7 +37,7 @@ class MunicipalitiesController extends Controller
      */
     public function create()
     {
-        //
+        return view ('docente.municipio.create');
     }
 
     /**
@@ -39,18 +48,11 @@ class MunicipalitiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $munic = new Municipality ($request->all());
+        $munic->save();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        flash("Se ha registrado el municipio ". $munic->name . " de forma exitosa!" )->success();
+        return redirect()->route('munic.index');
     }
 
     /**
@@ -61,7 +63,8 @@ class MunicipalitiesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $munic = Municipality::find($id);
+        return view ('docente.municipio.edit')->with('munici', $munic);
     }
 
     /**
@@ -73,7 +76,12 @@ class MunicipalitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $munic = Municipality::find($id);
+        $munic->name = $request->name;
+        $munic->save();
+
+        flash("Se ha modificado el municipio " . $munic->name . " de forma exitosa!")->warning();
+        return redirect()->route('munic.index');
     }
 
     /**
@@ -84,6 +92,10 @@ class MunicipalitiesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $munic = Municipality::find($id);
+        $munic->delete();
+
+        flash("Se ha eliminado el municipio ". $munic->name . " de forman exitosa!")->error();
+        return redirect()->route('munic.index');
     }
 }
